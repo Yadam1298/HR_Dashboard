@@ -1,4 +1,3 @@
-// src/components/Orders.tsx
 import { useState } from 'react';
 import {
   ThemeProvider,
@@ -8,16 +7,14 @@ import {
   Timeline,
   Button,
   Toast,
+  ToastProps,
 } from '@luxis-ui/react';
 
 interface Order {
   id: number;
   customerName: string;
   projectName: string;
-  projectTimeline: {
-    label: string;
-    description: string;
-  }[];
+  projectTimeline: { label: string; description: string }[];
 }
 
 const orders: Order[] = [
@@ -62,11 +59,21 @@ const orders: Order[] = [
 const Orders = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
-  const [toastConfig, setToastConfig] = useState<{
-    show: boolean;
-    message: string;
-    variant: 'success' | 'error';
-  }>({ show: false, message: '', variant: 'success' });
+  const [toastConfig, setToastConfig] = useState<
+    Omit<
+      ToastProps,
+      'id' | 'createdAt' | 'children' | 'onDismiss' | 'isVisible'
+    >
+  >({
+    animationDuration: 300,
+    autoClose: 5000,
+    closeButton: true,
+    title: '',
+    pauseOnHover: true,
+    progressBar: true,
+    variant: 'success',
+    onClose: () => {},
+  });
 
   const handleCustomerClick = (order: Order) => {
     setSelectedOrder(order);
@@ -93,7 +100,6 @@ const Orders = () => {
         ))}
       </Box>
 
-      {/* Modal for project timeline */}
       <Modal
         isOpen={modalOpen}
         onClose={handleCloseModal}
@@ -123,20 +129,9 @@ const Orders = () => {
         </Box>
       </Modal>
 
-      {/* Toast container */}
-      {toastConfig.show && (
+      {toastConfig && toastConfig.variant && toastConfig.title && (
         <div style={{ position: 'fixed', top: 60, right: 16, zIndex: 9999 }}>
-          <Toast
-            key={Math.random()}
-            animationDuration={300}
-            autoClose={5000}
-            closeButton
-            title={toastConfig.message}
-            pauseOnHover
-            progressBar
-            variant={toastConfig.variant}
-            onClose={() => setToastConfig({ ...toastConfig, show: false })}
-          />
+          <Toast {...toastConfig} />
         </div>
       )}
     </ThemeProvider>

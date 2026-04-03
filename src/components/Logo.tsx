@@ -1,7 +1,11 @@
 import { Avatar } from '@luxis-ui/react';
 import React from 'react';
 
-const Logo = ({ collapsed }) => {
+interface LogoProps {
+  collapsed: boolean;
+}
+
+const Logo: React.FC<LogoProps> = ({ collapsed }) => {
   const username = localStorage.getItem('username') || 'User';
   return (
     <div style={{ display: 'flex', alignItems: 'center' }}>

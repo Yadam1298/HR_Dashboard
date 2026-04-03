@@ -1,4 +1,3 @@
-// src/pages/Login.tsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Box, Input, Button, Typography } from '@luxis-ui/react';
@@ -10,10 +9,7 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    // Store username in localStorage
     localStorage.setItem('username', username);
-
-    // Navigate to Home page
     navigate('/home');
   };
 
@@ -46,10 +42,10 @@ const Login: React.FC = () => {
           src="https://cdn.vectorstock.com/i/500p/77/14/hr-people-search-logo-vector-7437714.jpg"
           style={{ height: '150px', width: '150px' }}
         />
-        <Typography fontSize="md" fontWeight={600} mt={4}>
+        <Typography variant="h5" fontWeight={600} mt={4}>
           Welcome to HR Dashboard
         </Typography>
-        <Typography variant="h1" mt={2} fontSize="md">
+        <Typography variant="h6" mt={2}>
           Login to view the professional dashboard
         </Typography>
       </Box>
@@ -72,9 +68,9 @@ const Login: React.FC = () => {
           w="100%"
           maxW="400px"
         >
-          <h1 fontSize="lg" fontWeight={600} mb={2}>
+          <Typography variant="h4" fontWeight={600} mb={2}>
             Login
-          </h1>
+          </Typography>
 
           <Input
             label="Username"
@@ -95,21 +91,16 @@ const Login: React.FC = () => {
             required
           />
 
-          <Button
-            onClick={handleLogin}
-            variant="solid"
-            colorScheme="pink"
-            mt={4}
-          >
+          <Button onClick={handleLogin} variant="primary" mt={4}>
             Login
           </Button>
 
-          <h1 fontSize="sm" color="#737373" h1Align="center" mt={2}>
+          <Typography variant="body2" color="#737373" textAlign="center" mt={2}>
             Forgot your password?{' '}
             <a href="#" style={{ color: '#F13E93' }}>
               Reset
             </a>
-          </h1>
+          </Typography>
         </Box>
       </Box>
     </Box>
