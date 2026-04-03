@@ -1,7 +1,7 @@
 // src/pages/Login.tsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Avatar, Box, Input, Button } from '@luxis-ui/react';
+import { Avatar, Box, Input, Button, Typography } from '@luxis-ui/react';
 import { UserIcon, LockIcon } from '../assets/Icons';
 
 const Login: React.FC = () => {
@@ -46,12 +46,12 @@ const Login: React.FC = () => {
           src="https://cdn.vectorstock.com/i/500p/77/14/hr-people-search-logo-vector-7437714.jpg"
           style={{ height: '150px', width: '150px' }}
         />
-        <h1 fontSize="2xl" fontWeight={600} mt={4}>
+        <Typography fontSize="md" fontWeight={600} mt={4}>
           Welcome to HR Dashboard
-        </h1>
-        <h1 mt={2} fontSize="md">
+        </Typography>
+        <Typography variant="h1" mt={2} fontSize="md">
           Login to view the professional dashboard
-        </h1>
+        </Typography>
       </Box>
 
       {/* Right Side - Login Form */}

@@ -77,13 +77,7 @@ const Orders = () => {
 
   return (
     <ThemeProvider>
-      <Box
-        w="100%"
-        p={24}
-        display="grid"
-        gridTemplateColumns="repeat(auto-fit, minmax(250px, 1fr))"
-        gap={16}
-      >
+      <Box w="100%" p={24} display="grid" gap={16}>
         {orders.map((order) => (
           <Card
             key={order.id}
