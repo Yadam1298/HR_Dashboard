@@ -58,13 +58,7 @@ const Analytics = () => {
 
   return (
     <ThemeProvider>
-      <Box
-        w="100%"
-        p={24}
-        display="grid"
-        gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))"
-        gap={24}
-      >
+      <Box w="100%" p={24} display="grid" gap={24}>
         {/* Revenue Line Chart */}
         <Card size="lg" variant="elevated">
           <Box>
