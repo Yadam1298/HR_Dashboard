@@ -7,7 +7,6 @@ import {
   Timeline,
   Button,
   Toast,
-  ToastProps,
 } from '@luxis-ui/react';
 
 interface Order {
@@ -59,21 +58,6 @@ const orders: Order[] = [
 const Orders = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
-  const [toastConfig, setToastConfig] = useState<
-    Omit<
-      ToastProps,
-      'id' | 'createdAt' | 'children' | 'onDismiss' | 'isVisible'
-    >
-  >({
-    animationDuration: 300,
-    autoClose: 5000,
-    closeButton: true,
-    title: '',
-    pauseOnHover: true,
-    progressBar: true,
-    variant: 'success',
-    onClose: () => {},
-  });
 
   const handleCustomerClick = (order: Order) => {
     setSelectedOrder(order);
@@ -129,11 +113,16 @@ const Orders = () => {
         </Box>
       </Modal>
 
-      {toastConfig && toastConfig.variant && toastConfig.title && (
-        <div style={{ position: 'fixed', top: 60, right: 16, zIndex: 9999 }}>
-          <Toast {...toastConfig} />
-        </div>
-      )}
+      {/* Example Toast usage */}
+      <Toast
+        isVisible={false} // set true to show
+        onDismiss={() => {}}
+        id="toast-1"
+        createdAt={Date.now()}
+        children="This is a toast"
+        title="Success"
+        variant="success"
+      />
     </ThemeProvider>
   );
 };
