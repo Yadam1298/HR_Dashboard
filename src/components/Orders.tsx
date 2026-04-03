@@ -1,3 +1,4 @@
+// src/components/Orders.tsx
 import { useState } from 'react';
 import {
   ThemeProvider,
@@ -13,7 +14,10 @@ interface Order {
   id: number;
   customerName: string;
   projectName: string;
-  projectTimeline: { label: string; description: string }[];
+  projectTimeline: {
+    label: string;
+    description: string;
+  }[];
 }
 
 const orders: Order[] = [
@@ -58,6 +62,11 @@ const orders: Order[] = [
 const Orders = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [toastConfig, setToastConfig] = useState<{
+    show: boolean;
+    message: string;
+    variant: 'success' | 'error';
+  }>({ show: false, message: '', variant: 'success' });
 
   const handleCustomerClick = (order: Order) => {
     setSelectedOrder(order);
@@ -84,6 +93,7 @@ const Orders = () => {
         ))}
       </Box>
 
+      {/* Modal for project timeline */}
       <Modal
         isOpen={modalOpen}
         onClose={handleCloseModal}
@@ -113,16 +123,25 @@ const Orders = () => {
         </Box>
       </Modal>
 
-      {/* Example Toast usage */}
-      <Toast
-        isVisible={false} // set true to show
-        onDismiss={() => {}}
-        id="toast-1"
-        createdAt={Date.now()}
-        children="This is a toast"
-        title="Success"
-        variant="success"
-      />
+      {/* Toast container */}
+      {toastConfig.show && (
+        <div style={{ position: 'fixed', top: 60, right: 16, zIndex: 9999 }}>
+          <Toast
+            id={Date.now()}
+            createdAt={Date.now()}
+            isVisible={true}
+            onDismiss={() => setToastConfig({ ...toastConfig, show: false })}
+            animationDuration={300}
+            autoClose={5000}
+            closeButton
+            pauseOnHover
+            progressBar
+            variant={toastConfig.variant}
+          >
+            {toastConfig.message}
+          </Toast>
+        </div>
+      )}
     </ThemeProvider>
   );
 };

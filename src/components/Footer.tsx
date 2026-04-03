@@ -1,6 +1,5 @@
 // src/components/Footer.tsx
-import React from 'react';
-import { Box } from '@luxis-ui/react';
+import { Box, Typography } from '@luxis-ui/react';
 
 const Footer = ({ collapsed }: { collapsed: boolean }) => {
   return (
@@ -14,15 +13,15 @@ const Footer = ({ collapsed }: { collapsed: boolean }) => {
       w="100%"
     >
       {!collapsed && (
-        <h1 size="sm" style={{ color: '#2F6B3F' }}>
+        <Typography size="sm" style={{ color: '#2F6B3F' }}>
           © 2026 TechCorp Inc.
-        </h1>
+        </Typography>
       )}
 
       {collapsed && (
-        <h1 size="sm" style={{ color: '#2F6B3F' }}>
+        <Typography size="sm" style={{ color: '#2F6B3F' }}>
           © 2026
-        </h1>
+        </Typography>
       )}
     </Box>
   );

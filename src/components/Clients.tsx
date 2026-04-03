@@ -11,7 +11,6 @@ import {
   TableRow,
   TableHeaderCell,
   Button,
-  Modal,
   Toast,
   Rating,
 } from '@luxis-ui/react';
@@ -159,16 +158,19 @@ const Clients = () => {
         <div style={{ position: 'fixed', top: 60, right: 16, zIndex: 9999 }}>
           {currentToast && (
             <Toast
-              key={Math.random()}
+              id={Date.now()}
+              createdAt={Date.now()}
+              isVisible={!!currentToast}
+              onDismiss={() => setCurrentToast(null)}
               animationDuration={300}
               autoClose={5000}
               closeButton
-              title={currentToast.message}
               pauseOnHover
               progressBar
-              variant={currentToast.variant}
-              onClose={() => setCurrentToast(null)}
-            />
+              variant={currentToast?.variant}
+            >
+              {currentToast?.message}
+            </Toast>
           )}
         </div>
       </Box>

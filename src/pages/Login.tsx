@@ -42,10 +42,10 @@ const Login: React.FC = () => {
           src="https://cdn.vectorstock.com/i/500p/77/14/hr-people-search-logo-vector-7437714.jpg"
           style={{ height: '150px', width: '150px' }}
         />
-        <Typography variant="h5" weight="bold" mb={2}>
+        <Typography variant="h5" weight="bold" style={{ marginBottom: '2' }}>
           Welcome to HR Dashboard
         </Typography>
-        <Typography variant="body1" mb={2}>
+        <Typography variant="body1" style={{ marginBottom: '2' }}>
           Login to view the professional dashboard
         </Typography>
       </Box>
@@ -95,7 +95,11 @@ const Login: React.FC = () => {
             Login
           </Button>
 
-          <Typography variant="body2" color="muted" textAlign="center">
+          <Typography
+            variant="body2"
+            color="muted"
+            style={{ textAlign: 'center' }}
+          >
             Forgot your password?{' '}
             <a href="#" style={{ color: '#F13E93' }}>
               Reset

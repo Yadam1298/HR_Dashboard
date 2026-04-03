@@ -28,16 +28,16 @@ import {
 } from 'recharts';
 
 const employeeData = [
-  { department: 'Engineering', count: 12 },
-  { department: 'Design', count: 5 },
-  { department: 'Product', count: 4 },
-  { department: 'Finance', count: 3 },
+  { label: 'Engineering', count: 12 },
+  { label: 'Design', count: 5 },
+  { label: 'Product', count: 4 },
+  { label: 'Finance', count: 3 },
 ];
 
 const projectData = [
-  { status: 'Completed', count: 18 },
-  { status: 'In Progress', count: 7 },
-  { status: 'Not Started', count: 3 },
+  { status: 'Completed', count: 18, color: '#0088FE' },
+  { status: 'In Progress', count: 7, color: '#00C49F' },
+  { status: 'Not Started', count: 3, color: '#FFBB28' },
 ];
 
 const revenueData = [
@@ -54,8 +54,13 @@ const Analytics = () => {
   const [selectedDepartment, setSelectedDepartment] = useState<string>('All');
 
   // Safe options array for Select
-  const departmentOptions = ['All', ...employeeData.map((d) => d.department)];
-
+  const departmentOptions = [
+    { label: 'All', value: 'All' },
+    ...employeeData.map((d) => ({
+      label: d.label,
+      value: d.label,
+    })),
+  ];
   return (
     <ThemeProvider>
       <Box w="100%" p={24} display="grid" gap={24}>
@@ -97,7 +102,7 @@ const Analytics = () => {
                   {projectData.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={COLORS[index % COLORS.length]}
+                      fill={entry.color || COLORS[index % COLORS.length]}
                     />
                   ))}
                 </Pie>
@@ -153,13 +158,11 @@ const Analytics = () => {
                   .filter(
                     (d) =>
                       selectedDepartment === 'All' ||
-                      d.department === selectedDepartment,
+                      d.label === selectedDepartment,
                   )
                   .map((d) => (
-                    <TableRow key={d.department}>
-                      <TableCell style={{ color: '#000' }}>
-                        {d.department}
-                      </TableCell>
+                    <TableRow key={d.label}>
+                      <TableCell style={{ color: '#000' }}>{d.label}</TableCell>
                       <TableCell numeric style={{ color: '#000' }}>
                         {d.count}
                       </TableCell>

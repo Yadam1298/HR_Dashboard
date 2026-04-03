@@ -250,16 +250,19 @@ const Employees = () => {
         <div style={{ position: 'fixed', top: 60, right: 16, zIndex: 9999 }}>
           {currentToast && (
             <Toast
-              key={Math.random()}
+              id={Date.now()}
+              createdAt={Date.now()}
+              isVisible={true}
+              onDismiss={() => setCurrentToast(null)}
               animationDuration={300}
               autoClose={5000}
               closeButton
-              title={currentToast.message}
               pauseOnHover
               progressBar
               variant={currentToast.variant}
-              onClose={() => setCurrentToast(null)}
-            />
+            >
+              {currentToast.message}
+            </Toast>
           )}
         </div>
       </Box>
